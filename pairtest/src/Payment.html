@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+       <title>Payment Process</title>
+</head>
+<body>
+<div class="container">
+    <h6>Checkout</h6>
+    <h1>Payment Process</h1>
+    <form action="/">
+    <label for="country">Country
+        <select name="country" id="country">
+            <option value="england">England</option>
+            <option value="germany">Scotland</option>
+            <option value="india">India</option>
+            
+        </select>
+    </label>
+    <label for="cardno">Card Number
+    <input type="text" name="cardno" id="cardno" maxlength="12" />
+    </label>
+    <div class="float">
+    <label for="validtill">Valid till
+        <input type="text" name="validtill" id="validtill" maxlength="5"/>
+    </label>
+  <label for="cvv">Cvv
+        <input type="text" name="cvv" id="cvv" maxlength="3"/>
+    </label></div>
+    <label for="checkbox">
+    <input type="checkbox" name="checkbox" id="checkbox"/>
+    <p>Payment Address is the same as the Delivery Address</p></label> 
+    <section class="container content-section" style="margin-left: -30px;">
+        <h2 class="section-header">CART</h2>
+        <div class="cart-row">
+           </div>
+        <div class="cart-items">
+        </div>
+        <div class="text">
+            <strong class="cart-total-title" >Total</strong>
+            <div class="text">
+            <span class="total"  style="padding-top: 36px;padding-right: 26px; padding-bottom: 36px; " >£</span><span  id="resultTotal"  style="padding-top: 36px;"> </span>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-purchase" type="button" onclick=payment()>PURCHASE</button>
+  
+    </section>
+    </form>
+</div>
+
+<script  src="payment.js"></script>
+
+<script>
+
+document.getElementById("resultTotal").innerHTML =localStorage.getItem("total");
+
+
+function cardnumber(inputtxt)
+{
+  var cardno = /^(?:3[47][0-9]{13})$/;
+  if(inputtxt.value.match(cardno))
+        {
+      return true;
+        }
+      else
+        {
+        alert("Not a valid credit card number!");
+        return false;
+        }
+}
+</script>
+</body>
+</html>

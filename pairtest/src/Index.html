@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" constent="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>increment and decrement</title>
+</head>
+<body>
+    <div class="containero">
+        <button type="submit" class="btn" onclick="openPopup()">Book Tickets</button>
+        <div class="popup" id="popup">
+            <div class="list1" bis_skin="1">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-bordered" id="ticketcounter">
+                                <thead>
+                                    <p style="text-align: center;">Ticket Reservation System</p>
+                                    <div class="box">
+                                        <label for="name">Number of Tickets Needed:</label>
+                                    </div>
+                                    <div class="constant">
+                                        <div class="containerStuff">
+                                            <div class="decrement">
+                                                <button onclick="decrementValue()" class="dec" id="">-</button>
+                                            </div>
+                                            <div class="quantity">
+                                                <input class="qty" type="text" id="incdec" value="1">
+                                            </div>
+                                            <div class="increment"></div>
+                                            <button onclick="incrementValue()" class="inc">+</button>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="submit" onclick="closePopup()">Confirm</button>
+        <script>
+            const popup = document.getElementById("popup")
+            function openPopup() {
+                localStorage.setItem('Qty', JSON.stringify(1));
+                popup.classList.add("open-popup");
+            }
+            function closePopup() {
+                popup.classList.remove("open-popup");
+                localStorage.setItem("totalNumberOfTicket", document.getElementById("incdec").value);
+                window.location.href = 'dialog1.html';
+            }
+            const decBtn = document.getElementsByClassName('dec')
+            const incBtn = document.getElementsByClassName('inc')
+            const qty = document.getElementsByClassName('qty')[0]
+
+            function decrementValue() {
+                const tickets = JSON.parse(localStorage.getItem('Qty')) - 1;
+                console.log(tickets);
+                if (tickets < 1) {
+                    // handle less than 1 value
+                } else {
+                    localStorage.setItem('Qty', JSON.stringify(tickets));
+                    document.getElementById('incdec').value = tickets;
+                }
+            }
+            function incrementValue() {
+                const tickets = JSON.parse(localStorage.getItem('Qty')) + 1;
+                console.log(tickets);
+                if (tickets > 20) {
+                    // handle gt than 20 value
+                } else {
+
+                    localStorage.setItem('Qty', JSON.stringify(tickets));
+                    document.getElementById('incdec').value = tickets;
+                }
+            }
+
+        </script>
+</body>
+</html>

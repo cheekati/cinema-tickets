@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" constent="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>increment and decrement</title>
+</head>
+<body>
+      <div class ="box">
+        <label for="name">Adults:</label></div>
+        <div class="decrement">
+        <button class="dec" onclick="decrementValue1()" class="dec">-</button>
+    </div>
+    <div class="quantity">
+        <input  name="qty" id="Adults"  class="input-filed">
+    </div>
+    <div class="increment">
+        <button class="inc" onclick="incrementValue1()" class="inc">+</button>
+    </div>
+           </div>
+            <button type="submit" onclick="closePopup()" >Confirm</button>
+    </div>
+    <script>
+           const decBtn = document.getElementsByClassName('dec')
+           const incBtn = document.getElementsByClassName('inc')
+           const qty = JSON.parse(localStorage.getItem("Qty")) ?? 0;
+              document.getElementById('Adults').value = qty;
+
+         function closePopup() {
+                // popup.classList.remove("open-popup");
+                var adults = document.getElementById('Adults').value ;
+                var children = qty - adults;
+                localStorage.setItem("totalNumberOfAdults",adults);
+                localStorage.setItem("totalNumberOfChildren",children);
+                if(confirm(`Please confirm that there are ${adults} Adults and ${children} Children`))
+                window.location.href = 'dialog2.html';
+               
+            }
+            function showChildPopup(){
+                const qty = JSON.parse(localStorage.getItem("Qty")) ?? 0;
+                adult = document.getElementById('adults').value;
+                console.log(qty-adult);
+
+            }
+            function decrementValue1(){
+                var adults = document.getElementById('Adults').value ;
+                adults--;
+                console.log(adults);
+                if(adults < 1){
+                    // handle less than 1 value
+                }else {
+                
+                document.getElementById('Adults').value = adults;
+                }
+
+            }
+            function incrementValue1(){
+                var adults = document.getElementById('Adults').value ;
+                adults++;
+                console.log(adults);
+
+                
+                if(adults > qty){
+                    // handle gt than 20 value
+                }else {
+                
+                document.getElementById('Adults').value = adults;
+                }
+
+
+            }
+        
+    </script>
+</body>
+</html>
